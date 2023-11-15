@@ -1,18 +1,32 @@
 package at.dietze.ac;
 
-import at.dietze.ac.commands.GetPlaytime;
-import at.dietze.ac.commands.SetSpawnCommand;
+import at.dietze.ac.commands.*;
 import at.dietze.ac.interfaces.IStringInterface;
-import at.dietze.ac.playerEvents.EventMapper;
+import at.dietze.ac.playerEvents.OnPlayerChatEvent;
+import at.dietze.ac.playerEvents.OnPlayerDeathEvent;
+import at.dietze.ac.playerEvents.OnPlayerJoinEvent;
+import at.dietze.ac.playerEvents.OnPlayerLeaveEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Core extends JavaPlugin implements IStringInterface {
 
     public static Plugin plugin;
+    public static ArrayList<String> descriptions;
+
+    public static ArrayList<String> getDescriptions() {
+        return descriptions;
+    }
+
+    public static void addToDescriptions(String e) {
+        Core.getPlugin();
+    }
+
 
     @Override
     public void onEnable() {
@@ -27,7 +41,7 @@ public class Core extends JavaPlugin implements IStringInterface {
 
     }
 
-    public static Plugin getPlugin(){
+    public static Plugin getPlugin() {
         return plugin;
     }
 
@@ -35,7 +49,11 @@ public class Core extends JavaPlugin implements IStringInterface {
      *
      */
     private void registerEvents() {
-        Bukkit.getPluginManager().registerEvents(new EventMapper(), this);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerLeaveEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerDeathEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerJoinEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerChatEvent(), this);
+
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Events wurden registriert.");
     }
 
@@ -43,10 +61,12 @@ public class Core extends JavaPlugin implements IStringInterface {
      *
      */
     private void registerCommands() {
-        Objects.requireNonNull(this.getCommand("getplaytime")).setExecutor(new GetPlaytime());
+        Objects.requireNonNull(this.getCommand("getplaytime")).setExecutor(new GetPlaytimeCommand());
         Objects.requireNonNull(this.getCommand("setspawn")).setExecutor(new SetSpawnCommand());
+        Objects.requireNonNull(this.getCommand("pointsystem")).setExecutor(new PointSystemCommand());
+        Objects.requireNonNull(this.getCommand("spawn")).setExecutor(new SpawnCommand());
+        Objects.requireNonNull(this.getCommand("setnick")).setExecutor(new SetNickCommand());
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Befehle wurden registriert.");
-
     }
 
 }

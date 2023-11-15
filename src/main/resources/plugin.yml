@@ -1,0 +1,17 @@
+name: AnwesenCore
+main: at.dietze.ac.Core
+version: 1.0
+author: lyxt
+commands:
+  setSpawn:
+    description:
+  pointsystem:
+    description:
+  getplaytime:
+    description:
+  spawn:
+    description:
+  setnick:
+    description:
+  help:
+    description:

@@ -1,12 +1,19 @@
 package at.dietze.ac.commands;
 
 import at.dietze.ac.Core;
+import at.dietze.ac.interfaces.IStringInterface;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class SetSpawnCommand implements CommandExecutor {
+public class SetSpawnCommand implements CommandExecutor, IStringInterface {
+
+    public static String description = "Dieser Befehl setzt den globalen Spawnpunkt.";
+
+    public SetSpawnCommand() {
+        Core.addToDescriptions(description);
+    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
@@ -18,7 +25,7 @@ public class SetSpawnCommand implements CommandExecutor {
                 Core.getPlugin().getConfig().set("spawn", p.getLocation());
                 Core.getPlugin().saveConfig();
                 Core.getPlugin().reloadConfig();
-                p.sendMessage("§aSpawn wurde gesetzt.");
+                p.sendMessage(prefix + "§aSpawn wurde gesetzt.");
             }
         }
 
