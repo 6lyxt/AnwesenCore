@@ -1,0 +1,7 @@
+proj_t: AnwesenCore
+proj_d: Spigot based Plugin, System Core
+proj_a: 6lyxt (Johannes M. Dietze)
+proj_m: 6lyxt
+proj_extended:
+  build: maven
+  manager: sysmanage
