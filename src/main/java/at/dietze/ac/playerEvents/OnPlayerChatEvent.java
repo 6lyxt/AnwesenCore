@@ -10,13 +10,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 public class OnPlayerChatEvent implements Listener, IStringInterface {
 
     /**
-     * @param e
+     * @param e AsyncPlayerChatEvent
      */
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         String rawMsg = e.getMessage();
         String msg = prefix + "§7[privat] <§a" + e.getPlayer().getDisplayName() + "§7> " + rawMsg;
 
+        // hardcoded
         int dst = 25;
 
         Location playerLoc = e.getPlayer().getLocation();
@@ -24,13 +25,11 @@ public class OnPlayerChatEvent implements Listener, IStringInterface {
         e.setCancelled(true);
 
         for (Player pl : e.getRecipients()) {
-            if (pl.getLocation().distance(playerLoc) <= dst && pl.getUniqueId() != e.getPlayer().getUniqueId()) {
+            if (pl.getLocation().distance(playerLoc) <= dst) {
                 pl.sendMessage(msg);
             } else if (rawMsg.toLowerCase().startsWith("@all")) {
                 rawMsg = rawMsg.replace("@all", "");
                 pl.sendMessage(prefix + "§7[alle] <§a" + e.getPlayer().getDisplayName() + "§7>" + rawMsg);
-            } else {
-                e.getPlayer().sendMessage(prefix + "§7So still hier... deine Nachricht hat niemand gehört.");
             }
         }
     }

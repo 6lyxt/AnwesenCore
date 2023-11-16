@@ -1,7 +1,0 @@
-name: AnwesenCore
-main: at.dietze.ac.Core
-version: 1.0
-author: lyxt
-commands:
-  setSpawn:
-    

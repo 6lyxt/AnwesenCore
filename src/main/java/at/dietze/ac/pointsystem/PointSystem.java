@@ -3,6 +3,9 @@ package at.dietze.ac.pointsystem;
 import at.dietze.ac.mysql.SQLConnector;
 import org.bukkit.entity.Player;
 
+/**
+ * @TODO: implement point system & shop
+ */
 public class PointSystem {
 
     public static void addPoints(Player p, int count) {

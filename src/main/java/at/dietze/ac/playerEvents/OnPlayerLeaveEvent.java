@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class OnPlayerLeaveEvent implements Listener, IStringInterface {
 
     /**
-     * @param e
+     * @param e PlayerQuitEvent
      */
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {

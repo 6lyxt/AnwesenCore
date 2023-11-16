@@ -22,22 +22,26 @@ public class Core extends JavaPlugin implements IStringInterface {
         return descriptions;
     }
 
-    public static void addToDescriptions(String e) {
-        Core.descriptions.add(e);
-    }
-
-
     @Override
     public void onEnable() {
         plugin = this;
-        Bukkit.getConsoleSender().sendMessage("§a AnwesenCore Plugin aktiviert");
+        Bukkit.getConsoleSender().sendMessage(prefix + "§a AnwesenCore Plugin aktiviert");
         registerCommands();
         registerEvents();
     }
 
     @Override
     public void onDisable() {
+        Bukkit.getConsoleSender().sendMessage(prefix + "§a AnwesenCore Plugin deaktiviert");
+    }
 
+    /**
+     * @param action calling command, for example /help
+     * @param desc command description
+     */
+    public static void addToDescriptions(String action, String desc) {
+        Bukkit.getConsoleSender().sendMessage(prefix + "§a" + action + " §7 wurde registiert.");
+        Core.descriptions.add(prefix + "§a" + action + "§7 - " + desc);
     }
 
     public static Plugin getPlugin() {
@@ -45,7 +49,7 @@ public class Core extends JavaPlugin implements IStringInterface {
     }
 
     /**
-     *
+     * helper method to require all events
      */
     private void registerEvents() {
         Bukkit.getPluginManager().registerEvents(new OnPlayerLeaveEvent(), this);
@@ -57,7 +61,7 @@ public class Core extends JavaPlugin implements IStringInterface {
     }
 
     /**
-     *
+     * helper method to require all commands
      */
     private void registerCommands() {
         Objects.requireNonNull(this.getCommand("getplaytime")).setExecutor(new GetPlaytimeCommand());

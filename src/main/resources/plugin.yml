@@ -4,14 +4,14 @@ version: 1.0
 author: lyxt
 commands:
   setSpawn:
-    description:
+    description: lorem ipsum
   pointsystem:
-    description:
+    description: lorem ipsum
   getplaytime:
-    description:
+    description: lorem ipsum
   spawn:
-    description:
+    description: lorem ipsum
   setnick:
-    description:
+    description: lorem ipsum
   help:
-    description:
+    description: lorem ipsum

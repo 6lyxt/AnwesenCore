@@ -1,18 +1,30 @@
 package at.dietze.ac.commands;
 
 import at.dietze.ac.Core;
+import at.dietze.ac.interfaces.ICommandInterface;
 import at.dietze.ac.interfaces.IStringInterface;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class PointSystemCommand implements CommandExecutor, IStringInterface {
+public class PointSystemCommand implements CommandExecutor, IStringInterface, ICommandInterface {
 
-    public static String description = "§a/pointSystem §7- Dieser Befehl liefert Informationen zum Punktesystem.";
+    private final String action = "pointSystem";
+    private final String description = "Dieser Befehl liefert Informationen zum Punktesystem.";
 
     public PointSystemCommand() {
-        Core.addToDescriptions(description);
+        Core.addToDescriptions(this.getAction(), this.getDescription());
+    }
+
+    @Override
+    public String getAction() {
+        return this.action;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -27,7 +39,7 @@ public class PointSystemCommand implements CommandExecutor, IStringInterface {
 
         Player p = (Player)sender;
 
-        if(cmd.getName().equalsIgnoreCase("pointsystem")) {
+        if(cmd.getName().equalsIgnoreCase(this.getAction())) {
             if(args.length > 0 && args[0].length() > 0 && !args[0].equalsIgnoreCase("help")) {
                 if(args[0].equalsIgnoreCase("balance") && args[1].length() > 0) {
                     if(Core.getPlugin().getConfig().get("points_" + p.getUniqueId()) != null) {
@@ -46,4 +58,5 @@ public class PointSystemCommand implements CommandExecutor, IStringInterface {
 
         return false;
     }
+
 }

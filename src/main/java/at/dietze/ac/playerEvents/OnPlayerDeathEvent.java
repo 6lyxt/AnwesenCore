@@ -12,7 +12,7 @@ import java.util.Objects;
 public class OnPlayerDeathEvent implements Listener, IStringInterface {
 
     /**
-     * @param e
+     * @param e PlayerDeathEvent
      */
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e) {

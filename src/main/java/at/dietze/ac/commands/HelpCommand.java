@@ -1,18 +1,30 @@
 package at.dietze.ac.commands;
 
 import at.dietze.ac.Core;
+import at.dietze.ac.interfaces.ICommandInterface;
 import at.dietze.ac.interfaces.IStringInterface;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class HelpCommand implements CommandExecutor, IStringInterface {
+public class HelpCommand implements CommandExecutor, IStringInterface, ICommandInterface {
 
-    public static String description = "§a/help §7- Dieser Befehl zeigt diese Übersicht an.";
+    private final String action = "help";
+    private final String description = "Dieser Befehl zeigt diese Übersicht an.";
 
     public HelpCommand() {
-        Core.addToDescriptions(description);
+        Core.addToDescriptions(this.getAction(), this.getDescription());
+    }
+
+    @Override
+    public String getAction() {
+        return this.action;
+    }
+
+    @Override
+    public String getDescription() {
+        return this.description;
     }
 
     /**
@@ -27,7 +39,7 @@ public class HelpCommand implements CommandExecutor, IStringInterface {
 
         Player p = (Player) sender;
         
-        if(cmd.getName().equalsIgnoreCase("help")) {
+        if(cmd.getName().equalsIgnoreCase(this.action)) {
             p.sendMessage(prefix + "Befehlsübersicht:");
 
             for (String info : Core.getDescriptions()) {
@@ -37,4 +49,5 @@ public class HelpCommand implements CommandExecutor, IStringInterface {
         
         return false;
     }
+
 }
