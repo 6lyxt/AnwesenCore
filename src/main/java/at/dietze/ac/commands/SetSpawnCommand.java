@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class SetSpawnCommand implements CommandExecutor, IStringInterface {
 
-    public static String description = "Dieser Befehl setzt den globalen Spawnpunkt.";
+    public static String description = "§a/setSpawn §7- Dieser Befehl setzt den globalen Spawnpunkt.";
 
     public SetSpawnCommand() {
         Core.addToDescriptions(description);

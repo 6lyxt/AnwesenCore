@@ -7,11 +7,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-
 public class HelpCommand implements CommandExecutor, IStringInterface {
 
-    public static String description = "Dieser Befehl zeigt diese Übersicht an.";
+    public static String description = "§a/help §7- Dieser Befehl zeigt diese Übersicht an.";
 
     public HelpCommand() {
         Core.addToDescriptions(description);

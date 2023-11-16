@@ -25,7 +25,15 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
             p.setDisplayName(String.valueOf(Core.getPlugin().getConfig().get("customname_" + p.getUniqueId())));
         }
 
-        Team team = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard().registerNewTeam("mainTeam");
+        Team team;
+
+        if(Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard().getTeam("mainTeam") != null) {
+            team = Bukkit.getScoreboardManager().getMainScoreboard().getTeam("mainTeam");
+        } else {
+            team = Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard().registerNewTeam("mainTeam");
+        }
+
+        assert team != null;
         team.setNameTagVisibility(NameTagVisibility.NEVER);
 
         team.addEntry(p.getName());

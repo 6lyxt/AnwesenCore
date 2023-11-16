@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 
 public class GetPlaytimeCommand implements CommandExecutor, IStringInterface {
 
-    private String description = "Dieser Befehl zeigt die Spielzeit von einem Spieler an.";
+    private String description = "§a/getPlaytime §7- Dieser Befehl zeigt die Spielzeit von einem Spieler an.";
 
     public GetPlaytimeCommand() {
         Core.addToDescriptions(description);

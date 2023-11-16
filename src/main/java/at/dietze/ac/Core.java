@@ -10,21 +10,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Core extends JavaPlugin implements IStringInterface {
 
     public static Plugin plugin;
-    public static ArrayList<String> descriptions;
+    public static ArrayList<String> descriptions = new ArrayList<>();
 
     public static ArrayList<String> getDescriptions() {
         return descriptions;
     }
 
     public static void addToDescriptions(String e) {
-        Core.getPlugin();
+        Core.descriptions.add(e);
     }
 
 
@@ -66,6 +65,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Objects.requireNonNull(this.getCommand("pointsystem")).setExecutor(new PointSystemCommand());
         Objects.requireNonNull(this.getCommand("spawn")).setExecutor(new SpawnCommand());
         Objects.requireNonNull(this.getCommand("setnick")).setExecutor(new SetNickCommand());
+        Objects.requireNonNull(this.getCommand("help")).setExecutor(new HelpCommand());
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Befehle wurden registriert.");
     }
 

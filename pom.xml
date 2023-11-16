@@ -33,7 +33,17 @@
 </dependencies>
     <build>
         <finalName>Core</finalName>
-        <sourceDirectory>src/main/java/at/dietze/ac/</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+        </plugins>
+        <sourceDirectory>src/main/java/</sourceDirectory>
         <resources>
             <resource>
                 <targetPath>.</targetPath>

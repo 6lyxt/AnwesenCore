@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SpawnCommand implements CommandExecutor {
-    public static String description = "Dieser Befehl teleportiert dich zum Spawn.";
+    public static String description = "§a/spawn§7 - Dieser Befehl teleportiert dich zum Spawn.";
     public SpawnCommand() {
         Core.addToDescriptions(description);
     }

@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class SetNickCommand implements CommandExecutor, IStringInterface {
 
-    public static String description = "Dieser Befehl erlaubt es, den Spielernamen zu ändern.";
+    public static String description = "§a/setNick §7- Dieser Befehl erlaubt es, den Spielernamen zu ändern.";
 
     /**
      *

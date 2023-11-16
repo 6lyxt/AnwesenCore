@@ -2,7 +2,6 @@ package at.dietze.ac.commands;
 
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class PointSystemCommand implements CommandExecutor, IStringInterface {
 
-    public static String description = "Dieser Befehl liefert Informationen zum Punktesystem.";
+    public static String description = "§a/pointSystem §7- Dieser Befehl liefert Informationen zum Punktesystem.";
 
     public PointSystemCommand() {
         Core.addToDescriptions(description);
