@@ -2,6 +2,7 @@ package at.dietze.ac.playerEvents;
 
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
+import at.dietze.ac.realism.thirst.ThirstTask;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -40,6 +41,8 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
         p.setPlayerListName(null);
 
         e.setJoinMessage(prefix + "§9" + p.getDisplayName() + "§a betritt das Anwesen.");
+        ThirstTask thirstTask = new ThirstTask(p);
+        thirstTask.start();
 
         if(!p.hasPlayedBefore()) {
             p.sendMessage(prefix + "§a----------------");

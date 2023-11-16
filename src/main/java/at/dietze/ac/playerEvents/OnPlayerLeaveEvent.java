@@ -1,6 +1,7 @@
 package at.dietze.ac.playerEvents;
 
 import at.dietze.ac.interfaces.IStringInterface;
+import at.dietze.ac.realism.thirst.ThirstSimulator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,5 +17,6 @@ public class OnPlayerLeaveEvent implements Listener, IStringInterface {
         Player p = e.getPlayer();
 
         e.setQuitMessage(prefix + "§9" + p.getDisplayName() + "§a verlässt das Anwesen.");
+        ThirstSimulator.stopAndRequeue(p, false);
     }
 }

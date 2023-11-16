@@ -2,6 +2,7 @@ package at.dietze.ac.playerEvents;
 
 import at.dietze.ac.interfaces.IStringInterface;
 import at.dietze.ac.pointsystem.PointSystem;
+import at.dietze.ac.realism.thirst.ThirstSimulator;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,5 +22,6 @@ public class OnPlayerDeathEvent implements Listener, IStringInterface {
         PointSystem.removePoints(Objects.requireNonNull(p), 1);
 
         e.setDeathMessage(prefix + "§9 " + Objects.requireNonNull(p).getDisplayName() + "§c ist gestorben.");
+        ThirstSimulator.stopAndRequeue(p, true);
     }
 }

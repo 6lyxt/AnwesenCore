@@ -6,6 +6,7 @@ import at.dietze.ac.playerEvents.OnPlayerChatEvent;
 import at.dietze.ac.playerEvents.OnPlayerDeathEvent;
 import at.dietze.ac.playerEvents.OnPlayerJoinEvent;
 import at.dietze.ac.playerEvents.OnPlayerLeaveEvent;
+import at.dietze.ac.realism.thirst.PlayerSimulateThirst;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,7 +42,7 @@ public class Core extends JavaPlugin implements IStringInterface {
      */
     public static void addToDescriptions(String action, String desc) {
         Bukkit.getConsoleSender().sendMessage(prefix + "§a" + action + " §7 wurde registiert.");
-        Core.descriptions.add(prefix + "§a" + action + "§7 - " + desc);
+        Core.descriptions.add("§a/" + action + "§7 - " + desc);
     }
 
     public static Plugin getPlugin() {
@@ -56,6 +57,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Bukkit.getPluginManager().registerEvents(new OnPlayerDeathEvent(), this);
         Bukkit.getPluginManager().registerEvents(new OnPlayerJoinEvent(), this);
         Bukkit.getPluginManager().registerEvents(new OnPlayerChatEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerSimulateThirst(), this);
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Events wurden registriert.");
     }

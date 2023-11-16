@@ -25,7 +25,7 @@ public class OnPlayerChatEvent implements Listener, IStringInterface {
         e.setCancelled(true);
 
         for (Player pl : e.getRecipients()) {
-            if (pl.getLocation().distance(playerLoc) <= dst) {
+            if (pl.getLocation().distance(playerLoc) <= dst && !rawMsg.toLowerCase().startsWith("@all")) {
                 pl.sendMessage(msg);
             } else if (rawMsg.toLowerCase().startsWith("@all")) {
                 rawMsg = rawMsg.replace("@all", "");
