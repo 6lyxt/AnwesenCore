@@ -3,6 +3,8 @@ package at.dietze.ac.playerEvents;
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
 import at.dietze.ac.realism.thirst.ThirstTask;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -44,6 +46,7 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
         ThirstTask thirstTask = new ThirstTask(p);
         thirstTask.start();
 
+
         if(!p.hasPlayedBefore()) {
             p.sendMessage(prefix + "§a----------------");
             p.sendMessage(prefix + "§Willkommen auf dem Anwesen Minecraft Server!");
@@ -60,7 +63,8 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
             } else {
                 p.sendMessage(prefix + "§cEs wurde noch kein Spawn gesetzt. Bitte kontaktiere einen Administrator.");
             }
-
+        } else {
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§aWillkommen zurück!"));
         }
     }
 }

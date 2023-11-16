@@ -3,6 +3,8 @@ package at.dietze.ac.commands;
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.ICommandInterface;
 import at.dietze.ac.interfaces.IStringInterface;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -43,6 +45,7 @@ public class SpawnCommand implements CommandExecutor, ICommandInterface, IString
         Player p = (Player)sender;
 
         if(cmd.getName().equalsIgnoreCase(this.getAction())) {
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§aDu befindest dich nun am Spawn!"));
             Location spawn =  (Location) Core.getPlugin().getConfig().get("spawn");
             assert spawn != null;
             p.teleport(spawn);

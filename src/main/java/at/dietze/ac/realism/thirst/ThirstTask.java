@@ -2,6 +2,8 @@ package at.dietze.ac.realism.thirst;
 
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -18,12 +20,12 @@ public class ThirstTask implements IStringInterface {
     /**
      * duration between damage ticks
      */
-    private final int duration = 20; //before release, change to 200
+    private final int duration = 200;
 
     /**
      * delay after join
      */
-    private final int delay = 0; // before release, change to 7600
+    private int delay = (int) (Math.random() * (7600 - 1000)) + 1000;;
 
     /**
      * connected bukkit player
@@ -63,10 +65,10 @@ public class ThirstTask implements IStringInterface {
             this.player.sendMessage(prefix + "Scheduler running PID: " + this.schedulerID);
 
             if(!this.warningSent) {
-                this.player.sendMessage(prefix + "§cDu wirst langsam durstig...");
+                this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§cDu wirst langsam durstig..."));
                 this.warningSent = true;
             }
-            if(this.thirstLevel > 5) {
+            if(this.thirstLevel > 20) {
                 this.player.damage(2);
             }
         }, delay, duration);
@@ -78,7 +80,6 @@ public class ThirstTask implements IStringInterface {
     public void stop(int index) {
         activeThirstSchedulers.remove(index);
         Bukkit.getScheduler().cancelTask(this.schedulerID);
-        this.player.sendMessage(prefix + "Scheduler killed PID: " + this.schedulerID);
     }
 
 

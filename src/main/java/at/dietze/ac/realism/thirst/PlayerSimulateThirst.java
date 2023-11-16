@@ -23,8 +23,9 @@ public class PlayerSimulateThirst implements Listener {
         Player p = e.getPlayer();
 
         if(isDrink(e)) {
-            ThirstSimulator.stopAndRequeue(p, true);
+            p.setHealth(p.getHealth() + 2);
             p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 100, 1));
+            ThirstSimulator.stopAndRequeue(p, true);
         }
     }
 }
