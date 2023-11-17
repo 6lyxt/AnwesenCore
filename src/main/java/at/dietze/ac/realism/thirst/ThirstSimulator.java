@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 
 /**
  * dump class, objects are being initiated but never destroyed
- * may run into memory issues? not sure, keep an eye on
+ * instantiated in ThirstTask
  */
 public class ThirstSimulator {
 

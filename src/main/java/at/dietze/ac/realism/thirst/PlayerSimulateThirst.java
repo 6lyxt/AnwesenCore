@@ -12,10 +12,10 @@ public class PlayerSimulateThirst implements Listener {
 
     /**
      * @param e event
-     * @return
+     * @return bool
      */
     public boolean isDrink(PlayerItemConsumeEvent e){
-        return e.getItem().getType().equals(Material.POTION) && e.getItem().getDurability() == 0;
+        return e.getItem().getType().equals(Material.POTION);
     }
 
     @EventHandler

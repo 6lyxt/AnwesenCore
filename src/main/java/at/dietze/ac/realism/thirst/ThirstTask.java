@@ -10,6 +10,10 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 
 
+/**
+ * task helper class to run bukkit task in background
+ * instantiated in PlayerJoinEvent and on requeue (after consuming)
+ */
 public class ThirstTask implements IStringInterface {
 
     /**
@@ -62,13 +66,12 @@ public class ThirstTask implements IStringInterface {
     public void start() {
         this.schedulerID = Bukkit.getScheduler().scheduleSyncRepeatingTask(Core.getPlugin(), () -> {
             this.thirstLevel++;
-            this.player.sendMessage(prefix + "Scheduler running PID: " + this.schedulerID);
-
             if(!this.warningSent) {
                 this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§cDu wirst langsam durstig..."));
                 this.warningSent = true;
             }
             if(this.thirstLevel > 20) {
+                this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§cDu verdurstest!"));
                 this.player.damage(2);
             }
         }, delay, duration);

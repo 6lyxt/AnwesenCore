@@ -2,6 +2,7 @@ package at.dietze.ac.playerEvents;
 
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
+import at.dietze.ac.pointsystem.PlaytimeFetch;
 import at.dietze.ac.realism.thirst.ThirstTask;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -25,6 +26,8 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
+        PlaytimeFetch.setLastJoin(p, System.currentTimeMillis() / 1000L);
+
         // nicknames
         if(Core.getPlugin().getConfig().get("customname_" + p.getUniqueId()) != null) {
             p.setDisplayName(String.valueOf(Core.getPlugin().getConfig().get("customname_" + p.getUniqueId())));
@@ -45,6 +48,7 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
         e.setJoinMessage(prefix + "§9" + p.getDisplayName() + "§a betritt das Anwesen.");
         ThirstTask thirstTask = new ThirstTask(p);
         thirstTask.start();
+
 
 
         if(!p.hasPlayedBefore()) {

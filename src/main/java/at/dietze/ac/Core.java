@@ -41,8 +41,8 @@ public class Core extends JavaPlugin implements IStringInterface {
      * @param desc command description
      */
     public static void addToDescriptions(String action, String desc) {
-        Bukkit.getConsoleSender().sendMessage(prefix + "§a" + action + " §7 wurde registiert.");
         Core.descriptions.add("§a/" + action + "§7 - " + desc);
+        Bukkit.getConsoleSender().sendMessage(prefix + "§a" + action + " §7 wurde registiert.");
     }
 
     public static Plugin getPlugin() {
@@ -72,6 +72,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Objects.requireNonNull(this.getCommand("spawn")).setExecutor(new SpawnCommand());
         Objects.requireNonNull(this.getCommand("setnick")).setExecutor(new SetNickCommand());
         Objects.requireNonNull(this.getCommand("help")).setExecutor(new HelpCommand());
+        Objects.requireNonNull(this.getCommand("durst")).setExecutor(new DurstCommand());
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Befehle wurden registriert.");
     }
 

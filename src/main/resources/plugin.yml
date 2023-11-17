@@ -15,3 +15,5 @@ commands:
     description: lorem ipsum
   help:
     description: lorem ipsum
+  durst:
+    description: lorem ipsum
