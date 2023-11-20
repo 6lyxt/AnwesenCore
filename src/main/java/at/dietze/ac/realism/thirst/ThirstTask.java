@@ -29,7 +29,7 @@ public class ThirstTask implements IStringInterface {
     /**
      * delay after join
      */
-    private int delay = (int) (Math.random() * (7600 - 1000)) + 1000;;
+    private int delay = (int) (Math.random() * (7600 - 1000)) + 1000;
 
     /**
      * connected bukkit player
@@ -53,7 +53,6 @@ public class ThirstTask implements IStringInterface {
 
     /**
      * @param p related player
-     *
      */
     public ThirstTask(Player p) {
         this.player = p;
@@ -64,13 +63,13 @@ public class ThirstTask implements IStringInterface {
      * method to initiate the "thirst process"
      */
     public void start() {
-        this.schedulerID = Bukkit.getScheduler().scheduleAsyncRepeatingTask(Core.getPlugin(), () -> {
+        this.schedulerID = Bukkit.getScheduler().scheduleSyncRepeatingTask(Core.getPlugin(), () -> {
             this.thirstLevel++;
-            if(!this.warningSent) {
+            if (!this.warningSent) {
                 this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§cDu wirst langsam durstig..."));
-                this.warningSent = true;
             }
-            if(this.thirstLevel > 20) {
+            if (this.thirstLevel > 10) {
+                this.warningSent = true;
                 this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§cDu verdurstest!"));
                 this.player.damage(2);
             }
