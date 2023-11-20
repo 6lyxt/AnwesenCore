@@ -3,6 +3,7 @@ package at.dietze.ac.playerEvents;
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
 import at.dietze.ac.pointsystem.PlaytimeFetch;
+import at.dietze.ac.pointsystem.PointSystem;
 import at.dietze.ac.realism.thirst.ThirstTask;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -19,6 +20,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Team;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
 
 public class OnPlayerJoinEvent implements Listener, IStringInterface {
@@ -30,12 +35,12 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
 
-        e.setJoinMessage(prefix + "§9" + p.getDisplayName() + "§a betritt das Anwesen.");
-
-        PlaytimeFetch.setLastJoin(p, System.currentTimeMillis() / 1000L);
+        PointSystem.setDailyCoins(p);
 
         this.setNickname(p);
         this.hidePlayerName(p);
+
+        e.setJoinMessage(prefix + "§9" + p.getDisplayName() + "§a betritt das Anwesen.");
 
 
         ThirstTask thirstTask = new ThirstTask(p);
@@ -47,6 +52,7 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§aWillkommen zurück!"));
         }
     }
+
 
     /**
      * @param p Player
@@ -85,6 +91,7 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
         team.setNameTagVisibility(NameTagVisibility.NEVER);
         team.addEntry(p.getName());
         p.setPlayerListName(null);
+        
     }
 
     /**

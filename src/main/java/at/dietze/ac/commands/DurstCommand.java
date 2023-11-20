@@ -3,6 +3,8 @@ package at.dietze.ac.commands;
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.ICommandInterface;
 import at.dietze.ac.interfaces.IStringInterface;
+import at.dietze.ac.realism.thirst.ThirstSimulator;
+import at.dietze.ac.realism.thirst.ThirstTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

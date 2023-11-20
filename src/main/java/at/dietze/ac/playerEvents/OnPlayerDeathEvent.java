@@ -19,7 +19,11 @@ public class OnPlayerDeathEvent implements Listener, IStringInterface {
     public void onPlayerDeath(PlayerDeathEvent e) {
         Player p = e.getEntity().getPlayer();
 
-        PointSystem.removePoints(Objects.requireNonNull(p), 1);
+        if(e.getEntity().getKiller() != null) {
+            PointSystem.addPoints(e.getEntity().getKiller(), 1);
+        }
+
+        PointSystem.removePoints(Objects.requireNonNull(p), 1, true);
 
         e.setDeathMessage(prefix + "§9 " + Objects.requireNonNull(p).getDisplayName() + "§c ist gestorben.");
         ThirstSimulator.stopAndRequeue(p, true);

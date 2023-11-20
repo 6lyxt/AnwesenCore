@@ -2,10 +2,7 @@ package at.dietze.ac;
 
 import at.dietze.ac.commands.*;
 import at.dietze.ac.interfaces.IStringInterface;
-import at.dietze.ac.playerEvents.OnPlayerChatEvent;
-import at.dietze.ac.playerEvents.OnPlayerDeathEvent;
-import at.dietze.ac.playerEvents.OnPlayerJoinEvent;
-import at.dietze.ac.playerEvents.OnPlayerLeaveEvent;
+import at.dietze.ac.playerEvents.*;
 import at.dietze.ac.realism.thirst.PlayerSimulateThirst;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -58,6 +55,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Bukkit.getPluginManager().registerEvents(new OnPlayerJoinEvent(), this);
         Bukkit.getPluginManager().registerEvents(new OnPlayerChatEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerSimulateThirst(), this);
+        Bukkit.getPluginManager().registerEvents(new OnPlayerSneakEvent(), this);
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Events wurden registriert.");
     }
@@ -73,6 +71,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Objects.requireNonNull(this.getCommand("setnick")).setExecutor(new SetNickCommand());
         Objects.requireNonNull(this.getCommand("help")).setExecutor(new HelpCommand());
         Objects.requireNonNull(this.getCommand("durst")).setExecutor(new DurstCommand());
+        Objects.requireNonNull(this.getCommand("sit")).setExecutor(new SitCommand());
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Befehle wurden registriert.");
     }
 

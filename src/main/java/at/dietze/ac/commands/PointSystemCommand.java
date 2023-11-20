@@ -3,6 +3,8 @@ package at.dietze.ac.commands;
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.ICommandInterface;
 import at.dietze.ac.interfaces.IStringInterface;
+import at.dietze.ac.pointsystem.PointSystem;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -42,17 +44,31 @@ public class PointSystemCommand implements CommandExecutor, IStringInterface, IC
         if(cmd.getName().equalsIgnoreCase(this.getAction())) {
             if(args.length > 0 && args[0].length() > 0 && !args[0].equalsIgnoreCase("help")) {
                 if(args[0].equalsIgnoreCase("balance") && args[1].length() > 0) {
-                    if(Core.getPlugin().getConfig().get("points_" + p.getUniqueId()) != null) {
-                        p.sendMessage(prefix + "§7Deine aktuelle Punkteanzahl: §a" + Core.getPlugin().getConfig().get("points_" + p.getUniqueId()));
+                    if(Bukkit.getServer().getPlayer(args[1]) != null) {
+                        Player balancePlayer = Bukkit.getServer().getPlayer(args[1]);
+                        assert balancePlayer != null;
+                        if(PointSystem.getCurrentCoins(balancePlayer) != -1) {
+                            p.sendMessage(prefix + balancePlayer.getName() + "s aktuelle Punkteanzahl: §a" + PointSystem.getCurrentCoins(balancePlayer));
+                        } else {
+                            p.sendMessage(prefix + "§cVon diesem Spieler haben wir noch keine Aufzeichnungen.");
+                        }
+                    } else {
+                        p.sendMessage(prefix + "§cDieser Spieler wurde nicht gefunden.");
+
                     }
+                } else if(args[0].equalsIgnoreCase("trade")) {
+                    if(args[1] != null && args[2] != null) {
+                        PointSystem.tradingProcess(p, args);
+                    } else {
+                        p.sendMessage(prefix + "§cBitte fülle den Befehl vollständig aus:");
+                        p.sendMessage(prefix + "§7/pointsystem trade <Spielername> <Coins>");
+                    }
+                } else {
+                    p.sendMessage(prefix + "§cBitte überprüfe deine Eingabe.");
                 }
             } else {
-                p.sendMessage(prefix + "§aDas Punktesystem funktioniert wiefolgt:");
-                p.sendMessage(prefix + "§7Pro Join +5 Punkte (hier wird auf die Spielzeit geachtet - ein Join zählt nur 1x pro Tag!)");
-                p.sendMessage(prefix + "§7Pro Stunde Spielzeit +2 Punkte (nur jede volle Stunde!)");
-                p.sendMessage(prefix + "§7Pro Tod -1 Punkt");
-                p.sendMessage(prefix + "§7Pro Kill +1 Punkt (maximal 2 in der Stunde)");
-                p.sendMessage(prefix + "§7Das Punktesystem ist noch nicht ausgereift und befindet sich in der Testphase - Infos zu den Belohnungen findest du auf dem Anwesen Discord Server!");
+                p.sendMessage(prefix + "§7/pointsystem trade <Spielername> <Coins>");
+                p.sendMessage(prefix + "§7/pointsystem balance <Spielername>");
             }
         }
 

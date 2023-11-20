@@ -18,7 +18,7 @@ public class SetSpawnCommand implements CommandExecutor, IStringInterface, IComm
     /**
      * command description
      */
-    public static String description = "Dieser Befehl setzt den globalen Spawnpunkt.";
+    private final String description = "Dieser Befehl setzt den globalen Spawnpunkt.";
 
     public SetSpawnCommand() {
         Core.addToDescriptions(this.getAction(), this.getDescription());
@@ -47,6 +47,8 @@ public class SetSpawnCommand implements CommandExecutor, IStringInterface, IComm
                 Core.getPlugin().reloadConfig();
                 p.sendMessage(prefix + "§aSpawn wurde gesetzt.");
             }
+        } else {
+            p.sendMessage(prefix + "§cDu hast keine Berechtigung für diesen Befehl.");
         }
 
         return false;

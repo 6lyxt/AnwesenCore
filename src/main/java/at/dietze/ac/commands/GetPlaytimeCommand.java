@@ -57,7 +57,7 @@ public class GetPlaytimeCommand implements CommandExecutor, IStringInterface, IC
                 if(args.length > 0 && args[0].length() > 0) {
                     String playerName = args[0];
 
-                    String playerTime = PlaytimeFetch.getPlayHours(Objects.requireNonNull(Bukkit.getPlayer(playerName)));
+                    String playerTime = PlaytimeFetch.getPlayTime(Objects.requireNonNull(Bukkit.getPlayer(playerName)));
 
                     if(playerTime.length() > 0) {
                         p.sendMessage(prefix + "§aSpielzeit: " + playerTime);
@@ -65,9 +65,12 @@ public class GetPlaytimeCommand implements CommandExecutor, IStringInterface, IC
                         p.sendMessage(prefix + "§cDieser Spieler wurde noch nicht im System registriert.");
                     }
                 } else {
-                    String playerTime = PlaytimeFetch.getPlayHours(p);
-                    p.sendMessage(prefix + "§aSpielzeit: " + playerTime);
+                    String playerTime = PlaytimeFetch.getPlayTime(p);
+                    p.sendMessage(prefix + "§aDeine Spielzeit: " + playerTime);
                 }
+            } else {
+                String playerTime = PlaytimeFetch.getPlayTime(p);
+                p.sendMessage(prefix + "§aDeine Spielzeit: " + playerTime);
             }
         }
 

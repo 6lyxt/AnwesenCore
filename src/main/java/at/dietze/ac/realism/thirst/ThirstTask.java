@@ -64,7 +64,7 @@ public class ThirstTask implements IStringInterface {
      * method to initiate the "thirst process"
      */
     public void start() {
-        this.schedulerID = Bukkit.getScheduler().scheduleSyncRepeatingTask(Core.getPlugin(), () -> {
+        this.schedulerID = Bukkit.getScheduler().scheduleAsyncRepeatingTask(Core.getPlugin(), () -> {
             this.thirstLevel++;
             if(!this.warningSent) {
                 this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§cDu wirst langsam durstig..."));
