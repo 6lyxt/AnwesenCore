@@ -27,8 +27,8 @@ public class OnPlayerChatEvent implements Listener, IStringInterface {
             if (pl.getLocation().distanceSquared(playerLoc) <= dst && !rawMsg.toLowerCase().startsWith("@all")) {
                 pl.sendMessage(msg);
             } else if(rawMsg.toLowerCase().startsWith("@all")) {
-                rawMsg = rawMsg.replace("@all", "");
-                Bukkit.broadcastMessage(prefix + "§7[alle] <§a" + e.getPlayer().getDisplayName() + "§7>" + rawMsg);
+                Bukkit.broadcastMessage(prefix + "§7[alle] <§a" + e.getPlayer().getDisplayName() + "§7>" + rawMsg.replace("@all", ""));
+                break;
             }
         }
 

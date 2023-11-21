@@ -5,8 +5,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class PlayerSimulateThirst implements Listener {
 
@@ -23,8 +21,9 @@ public class PlayerSimulateThirst implements Listener {
         Player p = e.getPlayer();
 
         if(isDrink(e)) {
-            p.setHealth(p.getHealth() + 2);
-            p.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 100, 1));
+            if(p.getHealth() <= 18) {
+                p.setHealth(p.getHealth() + 2);
+            }
             ThirstSimulator.stopAndRequeue(p, true);
         }
     }

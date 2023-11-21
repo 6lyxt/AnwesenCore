@@ -72,6 +72,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Objects.requireNonNull(this.getCommand("help")).setExecutor(new HelpCommand());
         Objects.requireNonNull(this.getCommand("durst")).setExecutor(new DurstCommand());
         Objects.requireNonNull(this.getCommand("sit")).setExecutor(new SitCommand());
+        Objects.requireNonNull(this.getCommand("invsee")).setExecutor(new InvseeCommand());
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Befehle wurden registriert.");
     }
 

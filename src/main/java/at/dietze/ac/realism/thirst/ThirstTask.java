@@ -82,6 +82,7 @@ public class ThirstTask implements IStringInterface {
     public void stop(int index) {
         activeThirstSchedulers.remove(index);
         Bukkit.getScheduler().cancelTask(this.schedulerID);
+        this.player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§aDu bist jetzt nicht mehr durstig."));
     }
 
 

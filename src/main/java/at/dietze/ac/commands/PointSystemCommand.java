@@ -65,6 +65,7 @@ public class PointSystemCommand implements CommandExecutor, IStringInterface, IC
                     }
                 } else {
                     p.sendMessage(prefix + "§cBitte überprüfe deine Eingabe.");
+
                 }
             } else {
                 p.sendMessage(prefix + "§7/pointsystem trade <Spielername> <Coins>");

@@ -24,7 +24,7 @@ public class PointSystem implements IStringInterface {
                     return;
                 }
 
-                if(coins < 0) {
+                if (coins < 0) {
                     sender.sendMessage(prefix + "§cDu kannst doch nicht einfach " + receiver.getDisplayName() + "s Coins wegnehmen, du Schlawiner ;)");
                     return;
                 }
@@ -50,13 +50,12 @@ public class PointSystem implements IStringInterface {
     public static void setDailyCoins(Player p) {
         // requires some trickery
         if (!PlaytimeFetch.hasJoinedToday(p) && p.hasPlayedBefore()) {
-            int prevPlaytime = (PlaytimeFetch.getPlayTimeHours(p) * 2);
+            int hours = PlaytimeFetch.getPlayTimeHours(p);
             PlaytimeFetch.setCurrentPlaytime(p);
-            PlaytimeFetch.setLastJoin(p, System.currentTimeMillis() / 1000L);
-            int playtime = (PlaytimeFetch.getPlayTimeHours(p) * 2);
-            int dailyAmount = (playtime - prevPlaytime) * 2;
-            if (dailyAmount != 0) {
-                PointSystem.addPoints(p, dailyAmount);
+
+            if (hours > 0) {
+                PointSystem.addPoints(p, (hours * 2));
+                PlaytimeFetch.setLastJoin(p, (System.currentTimeMillis() / 1000L));
             } else {
                 p.sendMessage(prefix + "§cDa du keine weitere volle Stunde gespielt hast, erhälst du keine Coins.");
             }

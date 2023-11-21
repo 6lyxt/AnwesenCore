@@ -2,7 +2,6 @@ package at.dietze.ac.playerEvents;
 
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
-import at.dietze.ac.pointsystem.PlaytimeFetch;
 import at.dietze.ac.pointsystem.PointSystem;
 import at.dietze.ac.realism.thirst.ThirstTask;
 import net.md_5.bungee.api.ChatMessageType;
@@ -20,10 +19,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Team;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Objects;
 
 public class OnPlayerJoinEvent implements Listener, IStringInterface {
