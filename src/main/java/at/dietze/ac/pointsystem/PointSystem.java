@@ -50,11 +50,14 @@ public class PointSystem implements IStringInterface {
     public static void setDailyCoins(Player p) {
         // requires some trickery
         if (!PlaytimeFetch.hasJoinedToday(p) && p.hasPlayedBefore()) {
-            int hours = PlaytimeFetch.getPlayTimeHours(p);
+            int prevPlaytime = PlaytimeFetch.getPlayTimeHours(p);
             PlaytimeFetch.setCurrentPlaytime(p);
+            int currPlaytime = PlaytimeFetch.getPlayTimeHours(p);
 
-            if (hours > 0) {
-                PointSystem.addPoints(p, (hours * 2));
+            int coins = currPlaytime - prevPlaytime;
+
+            if (coins > 0) {
+                PointSystem.addPoints(p, (coins * 2));
                 PlaytimeFetch.setLastJoin(p, (System.currentTimeMillis() / 1000L));
             } else {
                 p.sendMessage(prefix + "§cDa du keine weitere volle Stunde gespielt hast, erhälst du keine Coins.");

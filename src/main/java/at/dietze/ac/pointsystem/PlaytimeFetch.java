@@ -36,6 +36,14 @@ public class PlaytimeFetch implements IStringInterface {
         return 0L;
     }
 
+    public static long getLastQuit(Player p) {
+        if(Core.getPlugin().getConfig().get("lastquit_" + p.getUniqueId()) != null) {
+            return ((Number) Core.getPlugin().getConfig().get("lastquit_" + p.getUniqueId())).longValue();
+        }
+
+        return 0L;
+    }
+
     /**
      * @param p Player
      * @param time long
@@ -57,8 +65,9 @@ public class PlaytimeFetch implements IStringInterface {
      */
     public static void setCurrentPlaytime(Player p) {
         long joinTime = getLastJoin(p);
+        long leaveTime = getLastQuit(p);
 
-        long playtime = ((System.currentTimeMillis()/1000L) - joinTime);
+        long playtime = (leaveTime - joinTime);
 
         if (Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId()) != null) {
             playtime += ((Number) Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId())).longValue();
