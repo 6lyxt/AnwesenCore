@@ -29,7 +29,7 @@ public class ThirstTask implements IStringInterface {
     /**
      * delay after join
      */
-    private int delay = (int) (Math.random() * (7600 - 1000)) + 1000;
+    private int delay = (int) (Math.random() * (12000 - 1000)) + 1000;
 
     /**
      * connected bukkit player

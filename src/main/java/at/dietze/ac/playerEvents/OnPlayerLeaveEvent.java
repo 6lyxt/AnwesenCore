@@ -19,6 +19,8 @@ public class OnPlayerLeaveEvent implements Listener, IStringInterface {
 
         PlaytimeFetch.setLastQuit(p, (System.currentTimeMillis()/1000L));
 
+        PlaytimeFetch.setCurrentPlaytime(p);
+
         e.setQuitMessage(prefix + "§9" + p.getDisplayName() + "§a verlässt das Anwesen.");
         ThirstSimulator.stopAndRequeue(p, false);
     }

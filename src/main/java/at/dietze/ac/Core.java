@@ -56,6 +56,7 @@ public class Core extends JavaPlugin implements IStringInterface {
         Bukkit.getPluginManager().registerEvents(new OnPlayerChatEvent(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerSimulateThirst(), this);
         Bukkit.getPluginManager().registerEvents(new OnPlayerSneakEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new OnEntityDamage(), this);
 
         Bukkit.getConsoleSender().sendMessage(prefix + "§a Events wurden registriert.");
     }

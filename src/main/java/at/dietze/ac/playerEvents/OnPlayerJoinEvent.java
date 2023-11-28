@@ -2,6 +2,7 @@ package at.dietze.ac.playerEvents;
 
 import at.dietze.ac.Core;
 import at.dietze.ac.interfaces.IStringInterface;
+import at.dietze.ac.pointsystem.PlaytimeFetch;
 import at.dietze.ac.pointsystem.PointSystem;
 import at.dietze.ac.realism.thirst.ThirstTask;
 import net.md_5.bungee.api.ChatMessageType;
@@ -31,6 +32,7 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
         Player p = e.getPlayer();
 
         PointSystem.setDailyCoins(p);
+
 
         this.setNickname(p);
         this.hidePlayerName(p);
