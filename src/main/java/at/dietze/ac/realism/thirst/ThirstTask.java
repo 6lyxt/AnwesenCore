@@ -28,8 +28,9 @@ public class ThirstTask implements IStringInterface {
 
     /**
      * delay after join
+     * a second in minecraft represents 20 ticks -> 60*10 = 10 minutes, 20*60*10
      */
-    private int delay = (int) (Math.random() * (12000 - 1000)) + 1000;
+    private final int delay = (20 * 60 * 10);
 
     /**
      * connected bukkit player
