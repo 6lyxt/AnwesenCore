@@ -43,8 +43,8 @@ public class PointSystemCommand implements CommandExecutor, IStringInterface, IC
 
         if(cmd.getName().equalsIgnoreCase(this.getAction())) {
             if(args.length > 0 && args[0].length() > 0 && !args[0].equalsIgnoreCase("help")) {
-                if(args[0].equalsIgnoreCase("balance") && args[1].length() > 0) {
-                    if(Bukkit.getServer().getPlayer(args[1]) != null) {
+                if(args[0].equalsIgnoreCase("balance")) {
+                    if(args.length > 1  && Bukkit.getServer().getPlayer(args[1]) != null) {
                         Player balancePlayer = Bukkit.getServer().getPlayer(args[1]);
                         assert balancePlayer != null;
                         if(PointSystem.getCurrentCoins(balancePlayer) != -1) {
@@ -53,8 +53,11 @@ public class PointSystemCommand implements CommandExecutor, IStringInterface, IC
                             p.sendMessage(prefix + "§cVon diesem Spieler haben wir noch keine Aufzeichnungen.");
                         }
                     } else {
-                        p.sendMessage(prefix + "§cDieser Spieler wurde nicht gefunden.");
-
+                        if(PointSystem.getCurrentCoins(p) != -1) {
+                            p.sendMessage(prefix + "Deine aktuelle Punkteanzahl: §a" + PointSystem.getCurrentCoins(p));
+                        } else {
+                            p.sendMessage(prefix + "Du hast noch keine Punkte!");
+                        }
                     }
                 } else if(args[0].equalsIgnoreCase("trade")) {
                     if(args[1] != null && args[2] != null) {

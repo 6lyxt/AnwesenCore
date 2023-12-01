@@ -43,7 +43,7 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
         ThirstTask thirstTask = new ThirstTask(p);
         thirstTask.start();
 
-        if(!p.hasPlayedBefore()) {
+        if(!PlaytimeFetch.hasPlayedBefore(p)) {
             this.newPlayerProcess(p);
         } else {
             p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(prefix + "§aWillkommen zurück!"));
@@ -96,11 +96,11 @@ public class OnPlayerJoinEvent implements Listener, IStringInterface {
      */
     private void newPlayerProcess(Player p) {
         p.sendMessage(prefix + "§a----------------");
-        p.sendMessage(prefix + "§Willkommen auf dem Anwesen Minecraft Server!");
-        p.sendMessage(prefix + "§aBitte wirf einen Blick auf unser Regelwerk,");
-        p.sendMessage(prefix + "§awelches du auf dem Anwesen Discord Server findest.");
-        p.sendMessage(prefix + "§aVergiss nicht, einen eigenen Nicknamen mit /setnick zu setzen!");
-        p.sendMessage(prefix + "§Viel Spaß auf dem Server!");
+        p.sendMessage(prefix + "Willkommen auf dem Anwesen Minecraft Server!");
+        p.sendMessage(prefix + "Bitte wirf einen Blick auf unser Regelwerk,");
+        p.sendMessage(prefix + "welches du auf dem Anwesen Discord Server findest.");
+        p.sendMessage(prefix + "Vergiss nicht, einen eigenen Nicknamen mit §a/setnick§7 zu setzen!");
+        p.sendMessage(prefix + "§aViel Spaß §7auf dem Server!");
         p.sendMessage(prefix + "§a----------------");
 
         Location spawn =  (Location) Core.getPlugin().getConfig().get("spawn");

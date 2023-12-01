@@ -49,7 +49,7 @@ public class PointSystem implements IStringInterface {
      */
     public static void setDailyCoins(Player p) {
         // requires some trickery
-        if (!PlaytimeFetch.hasJoinedToday(p) && p.hasPlayedBefore()) {
+        if (!PlaytimeFetch.hasJoinedToday(p) && PlaytimeFetch.hasPlayedBefore(p)) {
             int currPlaytime = PlaytimeFetch.getPlayTimeHours(p);
 
             int coins = (currPlaytime % 2);

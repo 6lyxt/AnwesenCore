@@ -14,6 +14,9 @@ import java.util.Objects;
  */
 public class PlaytimeFetch implements IStringInterface {
 
+    public static boolean hasPlayedBefore(Player p) {
+        return PlaytimeFetch.getLastJoin(p) != 0L && PlaytimeFetch.getLastQuit(p) != 0L;
+    }
 
     /**
      * @param p Player
@@ -29,7 +32,7 @@ public class PlaytimeFetch implements IStringInterface {
     }
 
     public static long getLastJoin(Player p) {
-        if(Core.getPlugin().getConfig().get("lastjoin_" + p.getUniqueId()) != null) {
+        if (Core.getPlugin().getConfig().get("lastjoin_" + p.getUniqueId()) != null) {
             return ((Number) Core.getPlugin().getConfig().get("lastjoin_" + p.getUniqueId())).longValue();
         }
 
@@ -37,7 +40,7 @@ public class PlaytimeFetch implements IStringInterface {
     }
 
     public static long getLastQuit(Player p) {
-        if(Core.getPlugin().getConfig().get("lastquit_" + p.getUniqueId()) != null) {
+        if (Core.getPlugin().getConfig().get("lastquit_" + p.getUniqueId()) != null) {
             return ((Number) Core.getPlugin().getConfig().get("lastquit_" + p.getUniqueId())).longValue();
         }
 
@@ -45,7 +48,7 @@ public class PlaytimeFetch implements IStringInterface {
     }
 
     /**
-     * @param p Player
+     * @param p    Player
      * @param time long
      */
     public static void setLastJoin(Player p, long time) {
@@ -83,7 +86,7 @@ public class PlaytimeFetch implements IStringInterface {
      * @return
      */
     public static int getPlayTimeHours(Player p) {
-        if(Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId()) != null) {
+        if (Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId()) != null) {
             long timestamp = ((Number) Objects.requireNonNull(Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId()))).longValue();
 
             return (int) ((timestamp) / 3600);
@@ -96,11 +99,11 @@ public class PlaytimeFetch implements IStringInterface {
      * @return
      */
     public static String getPlayTime(Player p) {
-        if(Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId()) != null) {
+        if (Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId()) != null) {
 
             long timestamp = ((Number) Core.getPlugin().getConfig().get("playtime_" + p.getUniqueId())).longValue();
 
-            int playtimeHour = (int)((timestamp) / 3600);
+            int playtimeHour = (int) ((timestamp) / 3600);
             int playtimeMin = (int) (((timestamp) / 60) % 60);
 
             return playtimeHour + "h " + playtimeMin + "m";
