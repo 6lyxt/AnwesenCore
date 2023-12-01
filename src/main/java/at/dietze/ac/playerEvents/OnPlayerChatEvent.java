@@ -8,6 +8,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.util.Objects;
+
 public class OnPlayerChatEvent implements Listener, IStringInterface {
 
     /**
@@ -23,7 +25,7 @@ public class OnPlayerChatEvent implements Listener, IStringInterface {
 
         Location playerLoc = e.getPlayer().getLocation();
 
-        for (Player pl : Bukkit.getOnlinePlayers()) {
+        for (Player pl : Objects.requireNonNull(Bukkit.getServer().getWorld(e.getPlayer().getWorld().getUID())).getPlayers()) {
             if (pl.getLocation().distanceSquared(playerLoc) <= dst && !rawMsg.toLowerCase().startsWith("@all")) {
                 pl.sendMessage(msg);
                 Bukkit.getConsoleSender().sendMessage(msg);
