@@ -52,10 +52,10 @@ public class PointSystem implements IStringInterface {
         if (!PlaytimeFetch.hasJoinedToday(p) && PlaytimeFetch.hasPlayedBefore(p)) {
             int currPlaytime = PlaytimeFetch.getPlayTimeHours(p);
 
-            int coins = (currPlaytime % 2);
+            int coins = (currPlaytime / 2);
 
             if (coins > 0) {
-                PointSystem.addPoints(p, (coins * 2));
+                PointSystem.addPoints(p, (coins));
             } else {
                 p.sendMessage(prefix + "§cDa du keine weitere volle Stunde gespielt hast, erhälst du keine Coins.");
             }
